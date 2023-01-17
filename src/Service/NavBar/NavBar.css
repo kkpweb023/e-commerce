@@ -1,0 +1,25 @@
+
+
+.account{
+    margin-right:70px;
+
+}
+
+.menu:hover{
+     background-color: rgb(56, 55, 55);
+}
+
+
+.cart-Icon{
+
+    background-color: white;
+}
+
+.card-badge{
+
+     position: relative;
+     top: -13px;
+     left: -6px;
+     
+ 
+}

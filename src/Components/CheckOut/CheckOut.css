@@ -1,0 +1,18 @@
+.payment{
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-right:140px;
+}
+.bill_payment{
+
+    margin-top: -220px;
+}
+
+@media (max-width:770px) {
+
+    .bill_payment{
+
+        margin-top:0px;
+    }
+    
+}
