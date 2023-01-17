@@ -16,20 +16,24 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
         });
     }
 
-    const [itemSlip, setItemSlip] = useState([]);
+    //const [itemSlip, setItemSlip] = useState([]);
     const [productTable, setProductTable] = useState([]);
 
     function getPaymentSlip() {
         axios.get('http://localhost:4000/paymentlist')
             .then((result) => {
-                setItemSlip(result.data)
+                //setItemSlip(result.data)
                 result.data.map((value) => setProductTable(value.product))
             })
             .catch((error) => console.log("! 404 data not found"));
     }
     useEffect(() => {
         getPaymentSlip()
-    }, [slip])
+    },[slip])
+
+
+    //console.log(itemSlip)
+    console.log(slip)
 
 
 
@@ -58,11 +62,11 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
                         </div>
 
                         <div className='Invoice_number'>
-                            <b>Invoice Number:</b>{itemSlip.invoiceNumber}
+                            <b>Invoice Number:</b>{slip.invoiceNumber}
                         </div>
 
                         <small className='gstn_number mt-2'>
-                            <b>GSTIN:</b>{itemSlip.gstn}
+                            <b>GSTIN:</b>{slip.gstn}
                         </small>
                     </div>
                     <hr />
@@ -70,8 +74,8 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
                     <div className='order_address d-flex  justify-content-between'>
 
                         <div>
-                            <small><b>Order Id: {itemSlip._id}</b></small><br />
-                            <small><b>Order Date:</b>{itemSlip.date}</small>
+                            <small><b>Order Id: {slip._id}</b></small><br />
+                            <small><b>Order Date:</b>{slip.date}</small>
                         </div>
 
 
@@ -80,13 +84,13 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
                             <div><b>Bill To:</b></div>
 
                             <div>
-                                <div>{itemSlip.nameCard}</div>
+                                <div>{slip.nameCard}</div>
                                 <div>28/A-2,mosardah mod,nasopur,Mau-275101</div>
                                 <div>+91 9454631414</div>
                             </div>
                         </div>
                     </div>
-                    <small>Item:{itemSlip.item}</small>
+                    <small>Item:{slip.item}</small>
 
 
                     <table className='table'>
@@ -124,10 +128,10 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
                             <tr>
                                 <td></td>
                                 <td>Total</td>
-                                <td>{itemSlip.item}</td>
-                                <td>{itemSlip.itemtotal}</td>
-                                <td>{itemSlip.igst}</td>
-                                <td>{itemSlip.total}</td>
+                                <td>{slip.item}</td>
+                                <td>{slip.itemtotal}</td>
+                                <td>{slip.igst}</td>
+                                <td>{slip.total}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -136,7 +140,7 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
                     <div className='d-flex justify-content-end'>
 
                         <span className='me-5'><b>Grand Total</b></span>
-                        <span className='me-4'><b>Rs {itemSlip.total}</b></span>
+                        <span className='me-4'><b>Rs {slip.total}</b></span>
 
                     </div>
 
