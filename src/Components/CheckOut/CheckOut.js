@@ -5,18 +5,19 @@ import Failure from '../Payment/Failure';
 import Success from '../Payment/Success';
 import Slip from '../Slip/Slip';
 import './CheckOut.css';
+import ShipAddress from './Shipping/ShipAddress';
 
 const Checkout = () => {
 
     const [checkItem, setCheckItem] = useState([]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-
-
+   
     //payment slip download
 
     const [showSlip, setShowSlip] = useState(false);
     const handleSlipClose = () => setShowSlip(false);
+    
     const handleSlipShow = () => {
         setShow(false)
         setShowSlip(true);
@@ -57,7 +58,7 @@ const Checkout = () => {
      let month = date.getMonth() + 1;
      let year = date.getFullYear();
      let currentDate = `${day}-${month}-${year}`;
-
+   
 
     const handleShow = () => {
 
@@ -84,7 +85,7 @@ const Checkout = () => {
             total: PaymentAmount,
             item:checkItem.length,
             address: "",
-            status: "",
+            status:"",
             date:currentDate,
             igst:promoCode,
             product:checkItem
@@ -137,17 +138,7 @@ const Checkout = () => {
 
                     </div>
 
-                    <div className='col-md-5 col-lg-6 p-3 payment'>
-                        <h4 className='md-4'>Shipping address</h4>
-                        <div className='card-add' style={{ lineHeight: "25px" }}>
-                            <div className='card-body'>
-                                <h5 className='card-title text-secondary'>Kaushal Kishor Pandey</h5>
-                                <h6 className='card-subtitle mb-2 text-muted'>28/A-2,mosardah mod,nasopur,Mau-275101</h6>
-                                <h6 className='card-text'>+91 9454631414</h6>
-                            </div>
-                        </div>
-                    </div>
-
+                    <ShipAddress />
 
                     <div className='col-md-5 col-lg-6 p-3 mt-3 payment'>
 

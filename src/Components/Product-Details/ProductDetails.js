@@ -9,6 +9,8 @@ import axios from 'axios';
 const ProductDetails = () => {
 
     const navigate = useNavigate();
+    const auth = localStorage.getItem('user');
+
     const [productDetails, setProductDetails] = useState([]);
     const [images, setImages] = useState([]);
     const [changeImg, setChangeImg] = useState('');
@@ -61,8 +63,9 @@ const ProductDetails = () => {
 
 
     function handleCart() {
-        addCartList();
-        navigate('/cart');
+
+        auth ? addCartList() || navigate('/cart')
+        : alert("please login") || navigate('/login');
 
     }
 
@@ -88,8 +91,9 @@ const ProductDetails = () => {
 
 
     function handleBuy(){
-        addBuyList();
-        navigate('/placeOrder')
+        auth 
+        ? addBuyList() || navigate('/placeOrder')
+        :alert("please login") || navigate('/login');
     }
 
 

@@ -22,6 +22,8 @@ const Products = () => {
         showProducts();
     },[])
 
+    const auth = localStorage.getItem('user');
+
 
     function addCartList(cartData) {
         axios.post('http://localhost:4000/cartProduct', {
@@ -45,8 +47,10 @@ const Products = () => {
             .catch((error) => console.log("! 404 post failed"))
     }
     function handleAddCard(cartData) {
-        addCartList(cartData)
-        
+
+       auth ?  addCartList(cartData) 
+            : alert("please login") || navigate('/login');
+         
     }
 
 

@@ -32,11 +32,6 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        <div className='col'>
-                            <h5>Get Updates</h5>
-                            <input type={'text'} className="form-control rounded-0 shadow-none" />
-                            <button className='footer-btn rounded-0 shadow-none'>Subscribe</button>
-                        </div>
                     </div>
 
                 </div>

@@ -32,10 +32,6 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
     },[slip])
 
 
-    //console.log(itemSlip)
-    console.log(slip)
-
-
 
 
     return (
