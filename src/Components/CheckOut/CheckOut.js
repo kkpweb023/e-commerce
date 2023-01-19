@@ -47,10 +47,6 @@ const Checkout = () => {
     const [pay, setPay] = useState([]);
     const [slip, setSlip] = useState([]);
 
-    /*  
-     localStorage.setItem('status',pay);
-     let status = localStorage.getItem('status');
-     */
 
      //date set
      const date = new Date();
@@ -59,6 +55,7 @@ const Checkout = () => {
      let year = date.getFullYear();
      let currentDate = `${day}-${month}-${year}`;
    
+    let status = localStorage.getItem('status');
 
     const handleShow = () => {
 
@@ -85,7 +82,7 @@ const Checkout = () => {
             total: PaymentAmount,
             item:checkItem.length,
             address: "",
-            status:"",
+            status:status,
             date:currentDate,
             igst:promoCode,
             product:checkItem
@@ -95,6 +92,16 @@ const Checkout = () => {
         })
             .catch((error) => console.log("!404 failed"))
     }
+
+    useEffect(()=>{
+
+        setTimeout(()=>{
+            localStorage.setItem('status',pay);
+        },5000)
+          
+       
+    
+    },[pay])
 
 
 
