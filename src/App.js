@@ -4,6 +4,7 @@ import './App.css';
 import Cart from './Components/Cart/Cart';
 import PlaceOrder from './Components/Cart/PlaceOrder';
 import Checkout from './Components/CheckOut/CheckOut';
+import Order from './Components/MyOrder/Order';
 import ProductDetails from './Components/Product-Details/ProductDetails';
 import Products from './Components/Products/Products';
 import Slip from './Components/Slip/Slip';
@@ -35,6 +36,7 @@ function App() {
         <Route path='/placeOrder' element={<PlaceOrder/>} />
         <Route path='/checkOut' element={<Checkout />} />
         <Route path='/slip' element={ <Slip />} />
+        <Route path='/myAccount/order' element={ <Order />} />
         <Route path='/logout' element={'Logout'} />
 
       </Route>   

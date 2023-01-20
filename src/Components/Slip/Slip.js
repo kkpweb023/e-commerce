@@ -6,6 +6,7 @@ import jsPDF from 'jspdf';
 import axios from 'axios';
 
 
+
 const Slip = ({ showSlip, handleSlipClose, slip }) => {
 
     const handleSlip = async () => {

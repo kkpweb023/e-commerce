@@ -1,0 +1,23 @@
+.order_div{
+
+    text-align: center;
+    
+}
+
+.order_div>h1{
+
+    color: blueviolet;
+    text-align: left;
+}
+
+.order_div>.table{
+
+    background-color: antiquewhite;
+}
+
+.order_div>.table{
+
+    font-size: 14px;
+}
+
+
