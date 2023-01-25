@@ -2,8 +2,13 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import './Success.css';
 import Img from '../../Images/fail.JPG';
+import {useNavigate} from 'react-router-dom';
+
 
 const Failure = ({ handleClose, show, slip, pay }) => {
+
+    const navigate = useNavigate();
+
     return (
         <div>
             <Modal show={show} animation={false}>
@@ -22,6 +27,12 @@ const Failure = ({ handleClose, show, slip, pay }) => {
 
                             Payment failed,please pay again
                         </div>
+
+                        <button type="button" 
+                                className="btn btn-info btn-sm" 
+                                style={{position:"relative",left:"60%"}}
+                                onClick={()=>navigate('/myAccount/dashboard/account')}
+                        >Add Payment Card</button>
                     </div>
                 </Modal.Body>
             </Modal>

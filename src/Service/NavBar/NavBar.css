@@ -23,3 +23,19 @@
      
  
 }
+
+
+.navBar_form{
+    width: 28rem;
+}
+
+@media (max-width:1010px) {
+
+    .navBar_form{
+
+        width:18rem;
+    }
+
+    
+    
+}

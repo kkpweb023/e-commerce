@@ -1,28 +1,33 @@
 import React, { useContext } from 'react';
-import './Products.css';
-import { useNavigate } from 'react-router-dom';
-import Slider from '../../Slider/Slider';
-import AddToast from './Toast';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { MyContext } from '../../App';
+import AddToast from '../Products/Toast';
 
-const Products = () => {
+const Categories = () => {
 
-    const {data, handleAddCard,handleClose,setShowA,showA} = useContext(MyContext);
+    let params = useParams();
     const navigate = useNavigate();
-
-
+    const {categData, handleAddCard,showA,setShowA,handleClose} = useContext(MyContext);
 
 
     return (
-        <div className='Container mb-5'>
 
-            <Slider />
-            <AddToast showA={showA} setShowA={setShowA} handleClose={handleClose} />
+        <>
+        <AddToast showA={showA} setShowA={setShowA} handleClose={handleClose} />
+        
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb p-2">
+                    <li className="breadcrumb-item"><Link to={'/'}>Home</Link></li>
+                    <li className="breadcrumb-item active">Categories</li>
+                    <li className="breadcrumb-item active">{params.info}</li>
+                </ol>
+            </nav>
+
 
             <div className='item-div'>
 
                 {
-                    data.map((value, index) =>
+                    categData.map((value, index) =>
 
                         <div id='products' className="ms-4 mt-3" key={index}>
                             <div className='card product-item me-4 mt-4' data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see products details">
@@ -48,7 +53,6 @@ const Products = () => {
                                         <button
                                             className='btn-dark w-100 rounded-2 shadow-none'
                                             onClick={() => handleAddCard(value)}
-
                                         >Add To Cart</button>
                                     </div>
                                 </div>
@@ -56,9 +60,8 @@ const Products = () => {
                         </div>
                     )}
             </div>
-
-        </div>
+        </>
     )
 }
 
-export default Products
+export default Categories;

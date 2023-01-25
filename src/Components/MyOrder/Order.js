@@ -5,11 +5,8 @@ import './Order.css';
 
 const Order = () => {
 
-
-
     const [orderTable, setOrderTable] = useState([]);
 
-  
 
     function getPaymentSlip() {
         axios.get('http://localhost:4000/paymentlist')
@@ -18,8 +15,25 @@ const Order = () => {
             })
             .catch((error) => console.log("! 404 data not found"));
     }
-    useEffect(() => {
-        getPaymentSlip()
+
+
+    function handleDelete(id) {
+
+        axios.delete(`http://localhost:4000/paymentlistDelete/${id}`)
+            .then((result) => {
+                if (result.data.deletedCount === 1) {
+                    alert("delete successfully");
+                    getPaymentSlip();
+                } else {
+                    alert("delete failed")
+                }
+
+            })
+            .catch((errors) => console.log("! 404 failed"));
+    }
+
+    useEffect(()=>{
+        getPaymentSlip();
     },[])
 
 
@@ -27,40 +41,52 @@ const Order = () => {
 
     return (
         <>
-        
-        <div  className='container order_div'>
-            <h1>ORDERS</h1>
-            <Table striped bordered hover className='table'>
-                <thead className="table-dark">
-                    <tr>
-                        <th>S.NO.</th>
-                        <th>ORDER ID</th>
-                        <th>DATE</th>
-                        <th>ITEMS</th>
-                        <th>AMOUNTS</th>
-                        <th>STATUS</th>
-                        <th>VIEW</th>
-                    </tr>
-                </thead>
-                <tbody>
-                { 
-                  
-                  orderTable.map((value,index)=>
 
-                    <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{value._id}</td>
-                        <td>{value.date}</td>
-                        <td>{value.item}</td>
-                        <td>Rs. {value.total}</td>
-                        <td>{value.status}</td>
-                        <td>View</td>
-                    </tr>
+            <div className='container order_div'>
+                <h1>ORDERS</h1>
+                <Table striped bordered hover className='table'>
+                    <thead className="table-dark">
+                        <tr>
+                            <th>S.NO.</th>
+                            <th>ORDER ID</th>
+                            <th>DATE</th>
+                            <th>ITEMS</th>
+                            <th>AMOUNTS</th>
+                            <th>STATUS</th>
+                            <th>VIEW</th>
+                            <th>DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            orderTable.length > 0 ?
+                                orderTable.map((value, index) =>
 
-                )}   
-                </tbody>
-            </Table>
-        </div>
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{value._id}</td>
+                                        <td>{value.date}</td>
+                                        <td>{value.item}</td>
+                                        <td>Rs. {value.total}</td>
+                                        <td>{value.status}</td>
+                                        <td><button type="button" className="btn btn-success shadow-none" style={{ fontSize: "10px" }}>View</button></td>
+
+                                        <td><button type="button"
+                                            className="btn btn-danger shadow-none"
+                                            style={{ fontSize: "10px" }}
+                                            onClick={() => handleDelete(value._id)}
+
+                                        >Delete</button></td>
+                                    </tr>
+                                )
+                                :
+                                <tr>
+                                    <td style={{ border: "none", fontSize: "40px", color: "blue", fontWeight: "bold" }} colSpan={'8'}>No Order Item Found</td>
+                                </tr>
+                        }
+                    </tbody>
+                </Table>
+            </div>
         </>
     )
 }

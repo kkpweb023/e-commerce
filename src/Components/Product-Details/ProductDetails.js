@@ -15,7 +15,7 @@ const ProductDetails = () => {
     const [images, setImages] = useState([]);
     const [changeImg, setChangeImg] = useState('');
     const params = useParams();
-
+    
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
 
@@ -63,7 +63,6 @@ const ProductDetails = () => {
 
 
     function handleCart() {
-
         auth ? addCartList() || navigate('/cart')
         : alert("please login") || navigate('/login');
 
@@ -89,7 +88,6 @@ const ProductDetails = () => {
         .catch((error) => console.log("! 404 post failed"))
     }
 
-
     function handleBuy(){
         auth 
         ? addBuyList() || navigate('/placeOrder')
@@ -101,16 +99,26 @@ const ProductDetails = () => {
 
 
 
-
     return (
         <div>
 
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb p-2">
-                    <li className="breadcrumb-item"><Link to={'/'}>Home</Link></li>
-                    <li className="breadcrumb-item"><Link to={`/products-details/${params.id}`}>ProductDetails</Link></li>
-                    <li className="breadcrumb-item">Headphones</li>
-                    <li className="breadcrumb-item active" aria-current="page">Sony WX-5</li>
+                    <li className="breadcrumb-item">
+                            <Link to={'/'}>Home</Link>
+                    </li>
+
+                    <li className="breadcrumb-item active">
+                            products-details
+                    </li>
+
+                    <li className="breadcrumb-item active">
+                            {productDetails.category}
+                    </li>
+
+                    <li className="breadcrumb-item active" aria-current="page">
+                            {productDetails.title}
+                    </li>
                 </ol>
             </nav>
 

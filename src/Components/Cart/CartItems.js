@@ -5,7 +5,6 @@ import './Cart.css';
 const CartItems = ({ cartProduct, handleCartClose,handleQuantity }) => {
 
 
-
   return (
     <div className='col d-flex flex-column item-list'>
       {

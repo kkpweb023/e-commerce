@@ -6,8 +6,11 @@ import Success from '../Payment/Success';
 import Slip from '../Slip/Slip';
 import './CheckOut.css';
 import ShipAddress from './Shipping/ShipAddress';
+import {useNavigate} from 'react-router-dom';
 
 const Checkout = () => {
+
+    const navigate = useNavigate();
 
     const [checkItem, setCheckItem] = useState([]);
     const [show, setShow] = useState(false);
@@ -31,7 +34,7 @@ const Checkout = () => {
         axios.get(`http://localhost:4000/cartlist`)
             .then((result) =>{
                 setCheckItem(result.data)
-                setPromoCode(Math.floor(Math.random()*100))
+                setPromoCode(Math.floor(Math.random()*10))
             })
             .catch((error) => console.log("!404 failed"));
     }
@@ -61,38 +64,46 @@ const Checkout = () => {
 
     const handleShow = () => {
 
-        axios.post('http://localhost:4000/bankCheck', {
-            mode: mode,
-            nameCard: name,
-            cardNumber: number,
-            expire: expire,
-            cvv: cvv,
-            total: Itemtotal
-        }).then((result) => {
-            setShow(true);
-            setPay(result.data);
-        })
-            .catch((error) => console.log("!404 failed"))
+        if(mode==="" || name==="" || number==="" || expire==="" || cvv===""){
+            alert("Add Payment Card or enter correct data")
+            navigate('/myAccount/dashboard/account')
+        }else{
 
-        axios.post('http://localhost:4000/payment', {
+            axios.post('http://localhost:4000/bankCheck', {
+                mode: mode,
+                nameCard: name,
+                cardNumber: number,
+                expire: expire,
+                cvv: cvv,
+                total: Itemtotal
+            }).then((result) => {
+                setShow(true);
+                setPay(result.data);
+            })
+                .catch((error) => console.log("!404 failed"))
+    
+            axios.post('http://localhost:4000/payment', {
+    
+                invoiceNumber:Math.floor(Math.random() * 10000000000000),
+                gstn:Math.random().toString(36).substring(2,15).toUpperCase(),
+                mode: mode,
+                nameCard: name,
+                itemtotal:Itemtotal,
+                total: PaymentAmount,
+                item:checkItem.length,
+                address: "",
+                status:"",
+                date:currentDate,
+                igst:promoCode,
+                product:checkItem
+                    
+            }).then((result) => {
+                setSlip(result.data);
+            })
+                .catch((error) => console.log("!404 failed"))
 
-            invoiceNumber:Math.floor(Math.random() * 10000000000000),
-            gstn:Math.random().toString(36).substring(2,15).toUpperCase(),
-            mode: mode,
-            nameCard: name,
-            itemtotal:Itemtotal,
-            total: PaymentAmount,
-            item:checkItem.length,
-            address: "",
-            status:"",
-            date:currentDate,
-            igst:promoCode,
-            product:checkItem
-                
-        }).then((result) => {
-            setSlip(result.data);
-        })
-            .catch((error) => console.log("!404 failed"))
+        }        
+
     }
 
    
