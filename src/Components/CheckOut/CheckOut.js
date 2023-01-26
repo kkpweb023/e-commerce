@@ -121,7 +121,7 @@ const Checkout = () => {
 
                 <div className='row mt-5'>
 
-                    <div className="col-lg-4 order-md-last bill_payment">
+                    <div className="col-lg-4 order-md-last bill_payment" style={{border:"1px solid white"}}>
 
                         <h4 className="d-flex justify-content-between align-items-center mb-3">
                             <span className="text-primary">Your cart</span>
@@ -153,7 +153,7 @@ const Checkout = () => {
 
                     <ShipAddress />
 
-                    <div className='col-md-5 col-lg-6 p-3 mt-3 payment'>
+                    <div className='col-md-5 col-lg-6 p-3 mt-3 payment' style={{border:"1px solid white"}}>
 
                         <h4 className="mb-3">Payment</h4>
 

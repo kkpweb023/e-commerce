@@ -6,16 +6,21 @@ const SideMenu = () => {
     return (
             <div className='Side_Content_div'>
 
-                <div className='weather'>
-                    <Link to={"/myAccount/dashboard/profile"} className="a"><i className="bi bi-person-circle"></i> Profile</Link>
+                <div className='profile'>
+                    <Link to={"/myAccount/dashboard/profile"} className="a"><i className="bi bi-person-circle"></i></Link>
                 </div>
 
-                <div className='tablePagi'>
-                    <Link to={"/myAccount/dashboard/address"} className="a"><i className="bi bi-house-door"></i> Address</Link>
+                <div className='address'>
+                    <Link to={"/myAccount/dashboard/address"} className="a"><i className="bi bi-house-door"></i></Link>
                 </div>
 
-                <div className='crud'>
-                    <Link to={"/myAccount/dashboard/account"} className="a"><i className="bi bi-person-fill"></i> Account</Link>
+                <div className='account'>
+                    <Link to={"/myAccount/dashboard/account"} className="a"><i className="bi bi-person-fill"></i></Link>
+                </div>
+
+                
+                <div className='setting'>
+                    <Link to={"/myAccount/dashboard/setting"} className="a"><i class="bi bi-gear"></i></Link>
                 </div>
 
             </div>

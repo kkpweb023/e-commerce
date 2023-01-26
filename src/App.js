@@ -19,6 +19,7 @@ import Dashboard from './Components/DashBoard/Dashboard';
 import Profile from './Components/DashBoard/Profile/Profile';
 import Account from './Components/DashBoard/Account/Account';
 import Address from './Components/DashBoard/Address/Address';
+import Setting from './Components/DashBoard/Setting/Setting';
 
 let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
@@ -98,26 +99,35 @@ function App() {
   }
 
 
-    //navBar
+  //navBar
 
-    function cartPoint() {
-      axios.get(`${port}/cartlist`)
-        .then((result) => {
-          setPoint(result.data);
-        })
-        .catch((error) => console.log("!404 failed"));
-    }
-    useEffect(() => {
-      cartPoint();
-    }, [])
-  
-  
+  function cartPoint() {
+    axios.get(`${port}/cartlist`)
+      .then((result) => {
+        setPoint(result.data);
+      })
+      .catch((error) => console.log("!404 failed"));
+  }
+  useEffect(() => {
+    cartPoint();
+  }, [])
 
   useEffect(() => {
     showProducts();
   }, [search])
 
 
+  const [clicked, setClicked] = useState(false);
+
+    function handleMode(){
+          if(!clicked){
+                setClicked(true)
+          }else{
+              setClicked(false)
+          }
+    }
+
+  
 
 
   return (
@@ -137,13 +147,14 @@ function App() {
       setShowA: setShowA,
       showA: showA,
       point: point,
-      cartPoint: cartPoint
-  
+      cartPoint: cartPoint,
+      handleMode:handleMode
+
+
     }}
     >
 
-
-      <div className="App">
+      <div className={`App ${clicked ? 'App_mode' : ""}`}>
 
         <NavBar />
 
@@ -165,6 +176,7 @@ function App() {
             <Route path='/myAccount/dashboard/profile' element={<Profile />} />
             <Route path='/myAccount/dashboard/address' element={<Address />} />
             <Route path='/myAccount/dashboard/account' element={<Account />} />
+            <Route path='/myAccount/dashboard/setting' element={<Setting />} />
 
             <Route path='/logout' element={'Logout'} />
 

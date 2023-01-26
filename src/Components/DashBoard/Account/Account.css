@@ -1,7 +1,16 @@
 
 
 .payment_div{
-    width: 35rem;
+    width: 35rem; 
+    margin-right: 30px;
+    
+}
+
+.payment_div >form{
+
+    border: 1px solid rgb(255, 255, 255);
+   
+    
 }
 
 .save-item{

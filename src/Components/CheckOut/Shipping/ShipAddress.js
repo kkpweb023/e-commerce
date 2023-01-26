@@ -21,7 +21,7 @@ const ShipAddress = () => {
 
     return (
 
-        <div className='col-md-5 col-lg-6 p-3 payment position-relative'>
+        <div className='col-md-5 col-lg-6 p-3 payment position-relative' style={{border:"1px solid white"}}>
 
             <div className='edit_icon'> 
                 <i className="bi bi-pencil-square" ></i>

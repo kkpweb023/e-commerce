@@ -1,15 +1,19 @@
 .Side_Content_div{
-    padding: 50px 30px 30px 0px;
-    width:180px; 
-    height:300vh;   
+    padding: 30px 30px 30px 0px;
+    width:60px; 
+    height:72vh;   
     background-color: rgb(37, 36, 36);  
+    margin-top:40px;
+    border-top-right-radius:15px;
+    border-bottom-right-radius:10px;
 }
+
 
 .Side_Content_div > div {
     margin-bottom:10px;
     cursor: pointer;
-    width: 180px;
-    padding: 10px 0px 10px 50px;
+    width:60px;
+    padding: 10px 0px 10px 17px;
 }
 
 .Side_Content_div > div:hover{
@@ -18,7 +22,7 @@
 
 
 .Side_Content_div  > div> :first-child{
-    font-size:16px;
+    font-size:25px;
     font-weight:400;
     text-decoration-line: none;
     color:rgb(177, 171, 171)
@@ -27,5 +31,6 @@
 .Side_Content_div  > div> :first-child:hover{
     color:rgb(240, 239, 239)
 }
-  
+
+
   

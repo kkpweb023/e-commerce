@@ -7,16 +7,20 @@ const Dashboard = () => {
     return (
             <div className='Content_div'>
 
-                <div className='weather'>
+                <div className='profile' style={{border:"1px solid white"}}>
                     <Link to={"profile"} className="a"><i className="bi bi-person-circle"></i> Profile</Link>
                 </div>
 
-                <div className='tablePagi'>
+                <div className='address' style={{border:"1px solid white"}}>
                     <Link to={"address"} className="a"><i className="bi bi-house-door"></i> Address</Link>
                 </div>
 
-                <div className='crud'>
+                <div className='account' style={{border:"1px solid white"}}>
                     <Link to={"account"} className="a"><i className="bi bi-person-fill"></i> Account</Link>
+                </div>
+
+                <div className='setting' style={{border:"1px solid white"}}>
+                    <Link to={"setting"} className="a"><i class="bi bi-gear"></i>setting</Link>
                 </div>
                 
             </div>
