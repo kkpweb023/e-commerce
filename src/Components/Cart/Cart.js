@@ -54,7 +54,7 @@ const Cart = () => {
     useEffect(() => {
         handleQuantity();
         cartList();
-    },[])
+    },[cartPoint])
 
 
 

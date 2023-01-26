@@ -83,6 +83,7 @@ const Checkout = () => {
             })
                 .catch((error) => console.log("!404 failed"))
     
+                
             axios.post(`${port}/payment`, {
     
                 invoiceNumber:Math.floor(Math.random() * 10000000000000),
