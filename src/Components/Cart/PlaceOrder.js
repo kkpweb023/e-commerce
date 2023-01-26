@@ -1,14 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/esm/Button';
 import Img from '../../Images/Cart1.png';
+import { MyContext } from '../../App';
 
 let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 
 const PlaceOrder = () => {
+
+    const {cartPoint} = useContext(MyContext);
 
     const navigate = useNavigate();
     const [placeItem, setPlaceItem] = useState([]);
@@ -23,7 +26,7 @@ const PlaceOrder = () => {
         axios.delete(`${port}/deleteCart/${id}`)
             .then((result) => {
                 result.data.deletedCount === 1
-                    ? placeList()
+                    ? placeList() || cartPoint()
                     : console.log("delete failed")
             })
             .catch((error) => console.log("! 404 failed"))
@@ -35,7 +38,7 @@ const PlaceOrder = () => {
     useEffect(() => {
         placeList()
         tempClose.current();
-    },[])
+    },[cartPoint])
 
     let [price, setPrice] = useState([]);
     //let [discount, setdiscount] = useState([]);
