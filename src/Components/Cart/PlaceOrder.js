@@ -35,7 +35,7 @@ const PlaceOrder = () => {
     useEffect(() => {
         placeList()
         tempClose.current();
-    }, [])
+    },[])
 
     let [price, setPrice] = useState([]);
     //let [discount, setdiscount] = useState([]);
