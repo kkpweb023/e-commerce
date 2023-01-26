@@ -73,7 +73,6 @@ const ProductDetails = () => {
     function handleCart() {
         auth ? addCartList() || navigate('/cart')
         : alert("please login") || navigate('/login');
-
     }
 
 
@@ -104,6 +103,9 @@ const ProductDetails = () => {
         ? addBuyList() || navigate('/placeOrder')
         :alert("please login") || navigate('/login');
     }
+
+
+
 
 
 
