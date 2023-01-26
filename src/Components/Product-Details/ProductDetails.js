@@ -48,7 +48,7 @@ const ProductDetails = () => {
 
 
     function addCartList() {
-        axios.post(`${port}cartProduct`, {
+        axios.post(`${port}/cartProduct`, {
 
             id: productDetails.id,
             title: productDetails.title,
