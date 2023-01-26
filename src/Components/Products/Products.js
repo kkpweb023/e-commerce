@@ -27,7 +27,7 @@ const Products = () => {
                         <div id='products' className="ms-4 mt-3" key={index}>
                             <div className='card product-item me-4 mt-4' data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see products details">
 
-                                <img src={value.thumbnail} alt="" className='card-img-top' onClick={() => navigate(`/products-details/${value.id}`)} />
+                                <img src={value.thumbnail} alt="" loading="lazy" className='card-img-top' onClick={() => navigate(`/products-details/${value.id}`)} />
 
                                 <div className='card-body'>
                                     <span className='d-flex justify-content-between '>

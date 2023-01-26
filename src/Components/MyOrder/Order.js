@@ -3,13 +3,15 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import './Order.css';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 const Order = () => {
 
     const [orderTable, setOrderTable] = useState([]);
 
 
     function getPaymentSlip() {
-        axios.get('http://localhost:4000/paymentlist')
+        axios.get(`${port}/paymentlist`)
             .then((result) => {
                 setOrderTable(result.data)
             })
@@ -19,7 +21,7 @@ const Order = () => {
 
     function handleDelete(id) {
 
-        axios.delete(`http://localhost:4000/paymentlistDelete/${id}`)
+        axios.delete(`${port}/paymentlistDelete/${id}`)
             .then((result) => {
                 if (result.data.deletedCount === 1) {
                     alert("delete successfully");

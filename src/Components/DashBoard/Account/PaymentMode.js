@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 const PaymentMode = ({handleSaveCard}) => {
 
    const [mode,setMode] = useState('');
@@ -11,7 +13,7 @@ const PaymentMode = ({handleSaveCard}) => {
 
    function handleCard(){
 
-      axios.post('http://localhost:4000/bankdetails',{
+      axios.post(`${port}/bankdetails`,{
          
             mode:mode,
             nameCard:cardName,

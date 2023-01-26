@@ -1,12 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './ProductDetails.css';
 import ProductAccordion from './ProductAccordion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { MyContext } from '../../App';
+
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 
 const ProductDetails = () => {
+
+    const {cartPoint} = useContext(MyContext);
 
     const navigate = useNavigate();
     const auth = localStorage.getItem('user');
@@ -22,7 +27,7 @@ const ProductDetails = () => {
 
 
     function getSingleData() {
-        axios.get(`http://localhost:4000/product-details/${params.id}`)
+        axios.get(`${port}/product-details/${params.id}`)
             .then((result) => {
                 setProductDetails(result.data)
                 setImages(result.data.images)
@@ -43,7 +48,7 @@ const ProductDetails = () => {
 
 
     function addCartList() {
-        axios.post('http://localhost:4000/cartProduct', {
+        axios.post(`${port}cartProduct`, {
 
             id: productDetails.id,
             title: productDetails.title,
@@ -57,8 +62,11 @@ const ProductDetails = () => {
             total_amount: productDetails.total_amount,
             thumbnail: productDetails.thumbnail,
 
-        }).then((result) => console.log(result.data))
-            .catch((error) => console.log("! 404 post failed"))
+        }).then((result) =>{
+            cartPoint();
+            console.log(result.data)
+        }) 
+        .catch((error) => console.log("! 404 post failed"))
     }
 
 
@@ -70,7 +78,7 @@ const ProductDetails = () => {
 
 
     function addBuyList() {
-        axios.post('http://localhost:4000/cartProduct', {
+        axios.post(`${port}/cartProduct`, {
 
             id: productDetails.id,
             title: productDetails.title,
@@ -84,7 +92,10 @@ const ProductDetails = () => {
             total_amount: productDetails.total_amount,
             thumbnail: productDetails.thumbnail,
 
-        }).then((result) => console.log(result.data))
+        }).then((result) =>{
+            cartPoint();
+            console.log(result.data);
+        }) 
         .catch((error) => console.log("! 404 post failed"))
     }
 

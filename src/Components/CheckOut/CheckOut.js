@@ -8,6 +8,8 @@ import './CheckOut.css';
 import ShipAddress from './Shipping/ShipAddress';
 import {useNavigate} from 'react-router-dom';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 const Checkout = () => {
 
     const navigate = useNavigate();
@@ -31,7 +33,7 @@ const Checkout = () => {
     let PaymentAmount = Itemtotal - promoCode;
 
     function checkOutList() {
-        axios.get(`http://localhost:4000/cartlist`)
+        axios.get(`${port}/cartlist`)
             .then((result) =>{
                 setCheckItem(result.data)
                 setPromoCode(Math.floor(Math.random()*10))
@@ -60,7 +62,6 @@ const Checkout = () => {
 
      
    
-   
 
     const handleShow = () => {
 
@@ -69,7 +70,7 @@ const Checkout = () => {
             navigate('/myAccount/dashboard/account')
         }else{
 
-            axios.post('http://localhost:4000/bankCheck', {
+            axios.post(`${port}/bankCheck`, {
                 mode: mode,
                 nameCard: name,
                 cardNumber: number,
@@ -82,7 +83,7 @@ const Checkout = () => {
             })
                 .catch((error) => console.log("!404 failed"))
     
-            axios.post('http://localhost:4000/payment', {
+            axios.post(`${port}/payment`, {
     
                 invoiceNumber:Math.floor(Math.random() * 10000000000000),
                 gstn:Math.random().toString(36).substring(2,15).toUpperCase(),

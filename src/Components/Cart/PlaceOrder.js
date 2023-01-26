@@ -5,6 +5,8 @@ import axios from 'axios';
 import Button from 'react-bootstrap/esm/Button';
 import Img from '../../Images/Cart1.png';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 
 const PlaceOrder = () => {
 
@@ -12,13 +14,13 @@ const PlaceOrder = () => {
     const [placeItem, setPlaceItem] = useState([]);
 
     function placeList() {
-        axios.get(`http://localhost:4000/cartlist`)
+        axios.get(`${port}/cartlist`)
             .then((result) => setPlaceItem(result.data))
             .catch((error) => console.log("!404 failed"));
     }
 
     function handleClose(id) {
-        axios.delete(`http://localhost:4000/deleteCart/${id}`)
+        axios.delete(`${port}/deleteCart/${id}`)
             .then((result) => {
                 result.data.deletedCount === 1
                     ? placeList()

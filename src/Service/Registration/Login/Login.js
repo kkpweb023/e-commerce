@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 
-
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
 
   function handleLogin() {
 
-    axios.post('http://localhost:4000/login', {
+    axios.post(`${port}/login`, {
       email: email,
       password: pass
     })

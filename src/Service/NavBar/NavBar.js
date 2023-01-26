@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import './NavBar.css';
 import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { MyContext } from '../../App';
 
 
 const NavBar = () => {
 
-  const {handleSearchBtn,setSearch,handleCategories} = useContext(MyContext);
+  const {handleSearchBtn,setSearch,handleCategories,point} = useContext(MyContext);
     
   const navigate = useNavigate();
   const auth = localStorage.getItem('user');
@@ -19,23 +18,7 @@ const NavBar = () => {
     navigate('/signUp');
   }
 
-    const [point,setPoint] = useState('');
-
-    function cartPoint(){
-        axios.get(`http://localhost:4000/cartlist`)
-            .then((result) =>{
-                setPoint(result.data)
-            })
-            .catch((error) => console.log("!404 failed"));
-    }
-    useEffect(()=>{
-        cartPoint();
-    },[])
-
-
  
-
-
 
 
     return (

@@ -2,11 +2,14 @@ import React from 'react';
 import axios from 'axios';
 
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
+
 const SavedAccount = ({handleSaveCard,data}) => {
 
     function handleRemove(id){
 
-        axios.delete(`http://localhost:4000/bankListDelete/${id}`)
+        axios.delete(`${port}/bankListDelete/${id}`)
         .then((result) =>  
                 result.data.deletedCount === 1
                 ? handleSaveCard()

@@ -20,6 +20,8 @@ import Profile from './Components/DashBoard/Profile/Profile';
 import Account from './Components/DashBoard/Account/Account';
 import Address from './Components/DashBoard/Address/Address';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 export const MyContext = createContext();
 
 
@@ -30,20 +32,21 @@ function App() {
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const [categData, setCategData] = useState([]);
+  const [point, setPoint] = useState('');
 
-  
+
   //get all product in home page
 
   function showProducts() {
-    axios.get('http://localhost:4000/product')
+    axios.get(`${port}/product`)
       .then((result) => setData(result.data))
       .catch((error) => console.log("! data fetch failed"));
   }
 
   //get product using search
 
-  function handleSearch(){
-    axios.get(`http://localhost:4000/search/${search}`)
+  function handleSearch() {
+    axios.get(`${port}/search/${search}`)
       .then((result) => setData(result.data))
       .catch((error) => console.log("! search failed"))
   }
@@ -53,11 +56,12 @@ function App() {
 
   //get product using select categories
 
-  function handleCategories(rec){
-    axios.get(`http://localhost:4000/search/${rec}`)
-    .then((result) => setCategData(result.data))
-    .catch((error) => console.log("! search failed")) 
+  function handleCategories(rec) {
+    axios.get(`${port}/search/${rec}`)
+      .then((result) => setCategData(result.data))
+      .catch((error) => console.log("! search failed"))
   }
+
 
   //add to cart 
 
@@ -65,38 +69,53 @@ function App() {
   const handleClose = () => setShowA(false);
   const auth = localStorage.getItem('user');
 
-  function addCartList(cartData){
-      axios.post('http://localhost:4000/cartProduct', {
+  function addCartList(cartData) {
+    axios.post(`${port}/cartProduct`, {
 
-          id: cartData.id,
-          title: cartData.title,
-          brand: cartData.brand,
-          size: cartData.size,
-          color: cartData.color,
-          quantity: cartData.quantity,
-          price: cartData.price,
-          discountPercentage: cartData.discountPercentage,
-          deliveryCharge: cartData.deliveryCharge,
-          total_amount: cartData.total_amount,
-          thumbnail: cartData.thumbnail,
-      }).then((result) => {
-          if (result.data.id) {
-              setShowA(true);  
-          }
-      })
+      id: cartData.id,
+      title: cartData.title,
+      brand: cartData.brand,
+      size: cartData.size,
+      color: cartData.color,
+      quantity: cartData.quantity,
+      price: cartData.price,
+      discountPercentage: cartData.discountPercentage,
+      deliveryCharge: cartData.deliveryCharge,
+      total_amount: cartData.total_amount,
+      thumbnail: cartData.thumbnail,
+    }).then((result) => {
+      if (result.data.id) {
+        cartPoint();
+        setShowA(true);
+      }
+    })
       .catch((error) => console.log("! 404 post failed"))
   }
 
   function handleAddCard(cartData) {
-    auth ?  addCartList(cartData) 
-         : alert("please login") || navigate('/login');
- }
+    auth ? addCartList(cartData)
+      : alert("please login") || navigate('/login');
+  }
 
 
+    //navBar
+
+    function cartPoint() {
+      axios.get(`${port}/cartlist`)
+        .then((result) => {
+          setPoint(result.data);
+        })
+        .catch((error) => console.log("!404 failed"));
+    }
+    useEffect(() => {
+      cartPoint();
+    }, [])
+  
+  
 
   useEffect(() => {
     showProducts();
-  },[search])
+  }, [search])
 
 
 
@@ -111,13 +130,15 @@ function App() {
       setData: setData,
       handleSearch: handleSearch,
       showProducts: showProducts,
-      handleCategories:handleCategories,
-      categData:categData,
-      handleClose:handleClose,
-      handleAddCard:handleAddCard,
-      setShowA:setShowA,
-      showA:showA,
-      
+      handleCategories: handleCategories,
+      categData: categData,
+      handleClose: handleClose,
+      handleAddCard: handleAddCard,
+      setShowA: setShowA,
+      showA: showA,
+      point: point,
+      cartPoint: cartPoint
+  
     }}
     >
 

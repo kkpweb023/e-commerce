@@ -5,13 +5,15 @@ import PaymentMode from './PaymentMode';
 import SavedAccount from './SavedAccount';
 import axios from 'axios';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 const Account = () => {
 
   const [data, setData] = useState([]);
 
   function handleSaveCard(){
 
-    axios.get('http://localhost:4000/banklist')
+    axios.get(`${port}/banklist`)
         .then((result) => setData(result.data))
         .catch((error) => console.log("! 404 failed"))
   }

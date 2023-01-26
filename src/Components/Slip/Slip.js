@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import jsPDF from 'jspdf';
 import axios from 'axios';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 
 const Slip = ({ showSlip, handleSlipClose, slip }) => {
@@ -21,7 +22,7 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
     const [productTable, setProductTable] = useState([]);
 
     function getPaymentSlip() {
-        axios.get('http://localhost:4000/paymentlist')
+        axios.get(`${port}/paymentlist`)
             .then((result) => {
                 //setItemSlip(result.data)
                 result.data.map((value) => setProductTable(value.product))

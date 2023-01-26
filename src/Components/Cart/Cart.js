@@ -1,42 +1,47 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
 import CartItems from './CartItems';
 import axios from 'axios';
 import Button from 'react-bootstrap/esm/Button';
 import cartImg from '../../Images/Cart.png';
+import { MyContext } from '../../App';
+
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 const Cart = () => {
+
+    const {cartPoint} = useContext(MyContext);
+
     const navigate = useNavigate();
 
     const [cartItem, setCartItem] = useState([]);
 
 
     function cartList() {
-        axios.get(`http://localhost:4000/cartlist`)
+        axios.get(`${port}/cartlist`)
             .then((result) => setCartItem(result.data))
             .catch((error) => console.log("!404 failed"));
     }
 
     function handleCartClose(id) {
 
-        axios.delete(`http://localhost:4000/deleteCart/${id}`)
+        axios.delete(`${port}/deleteCart/${id}`)
             .then((result) => {
                 result.data.deletedCount === 1
-                    ? cartList()
+                    ? cartList() || cartPoint()
                     : alert("delete failed")
             })
             .catch((error) => console.log("! 404 failed"))
     }
 
 
-
-
     let [numItem, setNumItem] = useState("");
     console.log(numItem)
+    
     function handleQuantity(id, quantity) {
         
-        axios.put(`http://localhost:4000/quantityUpdate/${id}`, {
+        axios.put(`${port}/quantityUpdate/${id}`, {
             quantity: quantity,
         }).then((result) => {
             (result.data.modifiedCount === 1) 

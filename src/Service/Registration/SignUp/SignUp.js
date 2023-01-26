@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import sign from '../../../Images/sign.png';
 
+let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
+
 
 const SignUp = () => {
 
@@ -28,7 +30,7 @@ const SignUp = () => {
 
     function handleReg(){
 
-        axios.post('http://localhost:4000/register', {
+        axios.post(`${port}/register`, {
             name: name,
             email: email,
             password: pass
