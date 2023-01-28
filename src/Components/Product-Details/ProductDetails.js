@@ -11,7 +11,7 @@ let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 const ProductDetails = () => {
 
-    const {cartPoint} = useContext(MyContext);
+    const { cartPoint } = useContext(MyContext);
 
     const navigate = useNavigate();
     const auth = localStorage.getItem('user');
@@ -20,7 +20,7 @@ const ProductDetails = () => {
     const [images, setImages] = useState([]);
     const [changeImg, setChangeImg] = useState('');
     const params = useParams();
-    
+
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
 
@@ -62,17 +62,17 @@ const ProductDetails = () => {
             total_amount: productDetails.total_amount,
             thumbnail: productDetails.thumbnail,
 
-        }).then((result) =>{
+        }).then((result) => {
             cartPoint();
             console.log(result.data)
-        }) 
-        .catch((error) => console.log("! 404 post failed"))
+        })
+            .catch((error) => console.log("! 404 post failed"))
     }
 
 
     function handleCart() {
         auth ? addCartList() || navigate('/cart')
-        : alert("please login") || navigate('/login');
+            : alert("please login") || navigate('/login');
     }
 
 
@@ -91,24 +91,18 @@ const ProductDetails = () => {
             total_amount: productDetails.total_amount,
             thumbnail: productDetails.thumbnail,
 
-        }).then((result) =>{
+        }).then((result) => {
             cartPoint();
             console.log(result.data);
-        }) 
-        .catch((error) => console.log("! 404 post failed"))
+        })
+            .catch((error) => console.log("! 404 post failed"))
     }
 
-    function handleBuy(){
-        auth 
-        ? addBuyList() || navigate('/placeOrder')
-        :alert("please login") || navigate('/login');
+    function handleBuy() {
+        auth
+            ? addBuyList() || navigate('/placeOrder')
+            : alert("please login") || navigate('/login');
     }
-
-
-
-
-
-
 
 
 
@@ -118,19 +112,19 @@ const ProductDetails = () => {
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb p-2">
                     <li className="breadcrumb-item">
-                            <Link to={'/'}>Home</Link>
+                        <Link to={'/'}>Home</Link>
                     </li>
 
                     <li className="breadcrumb-item active">
-                            products-details
+                        products-details
                     </li>
 
                     <li className="breadcrumb-item active">
-                            {productDetails.category}
+                        {productDetails.category}
                     </li>
 
                     <li className="breadcrumb-item active" aria-current="page">
-                            {productDetails.title}
+                        {productDetails.title}
                     </li>
                 </ol>
             </nav>
@@ -141,7 +135,7 @@ const ProductDetails = () => {
                 <div className='row d-flex flex-row'>
 
                     <div className='col-md-5 product-img-big'>
-                        <img src={changeImg} alt="" className='img-fluid mt-2' style={{ height: "380px" }} />
+                        <img src={changeImg} alt="" className='img-productDetails-fluid mt-2' style={{ height: "380px" }} />
                     </div>
 
                     <div className='img-zoom'>
