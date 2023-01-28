@@ -26,9 +26,6 @@ const Setting = () => {
                     </div>
 
                 </div>
-
-
-
             </div>
 
         </div>

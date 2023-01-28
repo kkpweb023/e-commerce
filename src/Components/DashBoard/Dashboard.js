@@ -20,7 +20,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className='setting' style={{border:"1px solid white"}}>
-                    <Link to={"setting"} className="a"><i class="bi bi-gear"></i>setting</Link>
+                    <Link to={"setting"} className="a"><i className="bi bi-gear"></i>setting</Link>
                 </div>
                 
             </div>

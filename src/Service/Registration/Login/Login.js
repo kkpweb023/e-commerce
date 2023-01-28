@@ -44,10 +44,10 @@ const Login = () => {
 
 
 return (
-  <section className="vh-100">
-    <div className="mycontainer container-fluid py-5 h-100">
+  <section>
+    <div className="mycontainer container-fluid py-5">
 
-      <div className="row d-flex align-items-center justify-content-center h-100">
+      <div className="row d-flex align-items-center justify-content-center">
 
         <div className="col-sm-6 d-none d-sm-block">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"

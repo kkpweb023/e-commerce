@@ -1,41 +1,43 @@
-
-
-.account{
-    margin-right:70px;
-
+.account {
+  margin-right: 50px;
 }
 
-.menu:hover{
-     background-color: rgb(56, 55, 55);
+.menu:hover {
+  background-color: rgb(56, 55, 55);
 }
 
-
-.cart-Icon{
-
-    background-color: white;
+.cart-Icon {
+  background-color: white;
 }
 
-.card-badge{
-
-     position: relative;
-     top: -13px;
-     left: -6px;
-     
- 
+.card-badge {
+  position: relative;
+  top: -13px;
+  left: -6px;
 }
 
-
-.navBar_form{
-    width: 28rem;
+.navBar_form {
+  width: 28rem;
 }
 
-@media (max-width:1010px) {
+.off_body {
+  font-size: 22px;
+  margin-left: 20px;
+}
 
-    .navBar_form{
+@media (max-width: 1010px) {
+  .navBar_form {
+    width: 18rem;
+  }
+}
 
-        width:18rem;
-    }
+@media (max-width: 767px) {
+  .nav_bar {
+    display: none;
+  }
 
-    
-    
+  .navBar_form {
+    width: 343px;
+    height: 40px;
+  }
 }

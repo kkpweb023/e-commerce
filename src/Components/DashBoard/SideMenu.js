@@ -20,7 +20,7 @@ const SideMenu = () => {
 
                 
                 <div className='setting'>
-                    <Link to={"/myAccount/dashboard/setting"} className="a"><i class="bi bi-gear"></i></Link>
+                    <Link to={"/myAccount/dashboard/setting"} className="a"><i className="bi bi-gear"></i></Link>
                 </div>
 
             </div>

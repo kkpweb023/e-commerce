@@ -21,6 +21,9 @@ import Account from './Components/DashBoard/Account/Account';
 import Address from './Components/DashBoard/Address/Address';
 import Setting from './Components/DashBoard/Setting/Setting';
 
+
+
+
 let port = `https://graceful-gray-indri.cyclic.app` || `http://localhost:4000`;
 
 export const MyContext = createContext();
@@ -48,7 +51,10 @@ function App() {
 
   function handleSearch() {
     axios.get(`${port}/search/${search}`)
-      .then((result) => setData(result.data))
+      .then((result) => {
+        setData(result.data)
+        setShowMob(false)
+      })
       .catch((error) => console.log("! search failed"))
   }
   function handleSearchBtn() {
@@ -59,7 +65,10 @@ function App() {
 
   function handleCategories(rec) {
     axios.get(`${port}/search/${rec}`)
-      .then((result) => setCategData(result.data))
+      .then((result) =>{
+        setCategData(result.data)
+        setShowMob(false)
+      })
       .catch((error) => console.log("! search failed"))
   }
 
@@ -69,6 +78,12 @@ function App() {
   const [showA, setShowA] = useState(false);
   const handleClose = () => setShowA(false);
   const auth = localStorage.getItem('user');
+
+  const [showMob, setShowMob] = useState(false);
+
+ 
+
+
 
   function addCartList(cartData) {
     axios.post(`${port}/cartProduct`, {
@@ -148,8 +163,9 @@ function App() {
       showA: showA,
       point: point,
       cartPoint: cartPoint,
-      handleMode:handleMode
-
+      handleMode:handleMode,
+      showMob:showMob, 
+      setShowMob:setShowMob
 
     }}
     >

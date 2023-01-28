@@ -4,6 +4,7 @@ import { Button, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
+import AppBar from './AppBar';
 
 
 const NavBar = () => {
@@ -19,17 +20,15 @@ const NavBar = () => {
   }
 
  
-
-
     return (
 
         <>
-            <Navbar expand="md" bg="dark" variant="dark" className="pt-0 pb-0 w-100" style={{fontSize: "14px",zIndex:"20"}}>
+            <Navbar expand={'sm'} bg="dark" variant="dark" className="pt-0 pb-0 w-100" style={{fontSize: "14px",zIndex:"20"}}>
 
                 <Navbar.Brand className="me-5 ms-3 fs-6 fw-bold" >E-shopper</Navbar.Brand>
 
             
-                <Nav className="me-auto">
+                <Nav className="me-auto nav_bar">
 
                     <Nav.Link as={NavLink} to='/'  className="menu">Home</Nav.Link>
 
@@ -64,9 +63,7 @@ const NavBar = () => {
 
                 </Nav>
 
-                
-
-                <Nav>
+                <Nav className='nav_bar'>
                     <Form className="navBar_form d-flex pt-2 pb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Search Items">
                         <Form.Control
                             type="search"
@@ -102,6 +99,8 @@ const NavBar = () => {
                 }    
 
                 </Nav>
+
+                <AppBar />
             </Navbar>
         </>
     )
