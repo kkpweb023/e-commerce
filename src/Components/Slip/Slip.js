@@ -44,7 +44,7 @@ const Slip = ({ showSlip, handleSlipClose, slip }) => {
                     Download Slip
                 </Button>
 
-                <div onClick={handleSlipClose} style={{ cursor: "pointer", color: "whitesmoke", fontSize: "20px" }}><i className="bi bi-x-lg"></i></div>
+                <div onClick={handleSlipClose} style={{ cursor: "pointer", color: "whitesmoke", fontSize: "20px" }}><i className="bi bi-x-lg slip-cancel"></i></div>
             </Modal.Header>
 
             <Modal.Body className='modal_body'>

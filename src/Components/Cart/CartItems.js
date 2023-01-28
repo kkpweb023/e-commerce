@@ -13,13 +13,14 @@ const CartItems = ({ cartProduct, handleCartClose,handleQuantity }) => {
           <div className='cart-item p-2 mb-2' key={index}>
 
             <div className='d-flex flex-row'>
-              <img src={value.thumbnail} alt="" className='col-2 img-fluid' />
+              <img src={value.thumbnail} alt="" className='col-2 img-fluid'/>
               <div className='col-6 ps-4' style={{ lineHeight: "25px" }}>
                 <h5>{value.title}</h5>
                 <div style={{ color: "grey", fontSize: "14px" }}>{value.brand}</div>
                 <div style={{ color: "grey", fontSize: "14px" }}>Size:{value.size},{value.color}</div>
-                <h5>${value.price}</h5>
+                <h5 className='price_item'>${value.price}</h5>
               </div>
+
               <div className='col-2 p-2'>
                 Qty
                 <select 
@@ -35,8 +36,9 @@ const CartItems = ({ cartProduct, handleCartClose,handleQuantity }) => {
                   <option value={'5'}>5</option>
                 </select>
               </div>
+
               <div className='col-2 d-flex justify-content-end close' onClick={() => handleCartClose(value.id)}>
-                <i className="bi bi-x-circle"></i>
+                <i className="bi bi-x-circle close-i"></i>
               </div>
             </div>
           </div>

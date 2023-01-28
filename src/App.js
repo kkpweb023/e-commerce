@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 import './App.css';
 import Cart from './Components/Cart/Cart';
 import PlaceOrder from './Components/Cart/PlaceOrder';
@@ -33,11 +33,11 @@ function App() {
 
   const navigate = useNavigate();
 
-  const [search, setSearch] = useState('');
+  let [search, setSearch] = useState('');
   const [data, setData] = useState([]);
   const [categData, setCategData] = useState([]);
   const [point, setPoint] = useState('');
-
+  const [searchParams, setSearchParams] = useSearchParams();
 
   //get all product in home page
 
@@ -50,12 +50,25 @@ function App() {
   //get product using search
 
   function handleSearch() {
-    axios.get(`${port}/search/${search}`)
-      .then((result) => {
-        setData(result.data)
-        setShowMob(false)
-      })
-      .catch((error) => console.log("! search failed"))
+   
+      if (search) {
+
+        axios.get(`${port}/search/${search}`)
+        .then((result) => {
+          setData(result.data)
+          setShowMob(false)
+        })
+        .catch((error) => console.log("! search failed"))
+        
+        search = {
+          keyword:search
+        }
+      }else {
+        search = undefined;
+      }
+      setSearchParams(search, { replace: true });
+
+
   }
   function handleSearchBtn() {
     handleSearch();
@@ -78,11 +91,7 @@ function App() {
   const [showA, setShowA] = useState(false);
   const handleClose = () => setShowA(false);
   const auth = localStorage.getItem('user');
-
   const [showMob, setShowMob] = useState(false);
-
- 
-
 
 
   function addCartList(cartData) {
@@ -132,6 +141,8 @@ function App() {
   }, [search])
 
 
+
+  //dark mode
   const [clicked, setClicked] = useState(false);
 
     function handleMode(){
@@ -142,7 +153,9 @@ function App() {
           }
     }
 
+
   
+
 
 
   return (
@@ -165,7 +178,8 @@ function App() {
       cartPoint: cartPoint,
       handleMode:handleMode,
       showMob:showMob, 
-      setShowMob:setShowMob
+      setShowMob:setShowMob,
+      searchParams:searchParams
 
     }}
     >

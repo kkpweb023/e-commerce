@@ -9,7 +9,7 @@ import AppBar from './AppBar';
 
 const NavBar = () => {
 
-  const {handleSearchBtn,setSearch,handleCategories,point} = useContext(MyContext);
+  const {handleSearchBtn,setSearch,handleCategories,point,searchParams} = useContext(MyContext);
     
   const navigate = useNavigate();
   const auth = localStorage.getItem('user');
@@ -19,7 +19,9 @@ const NavBar = () => {
     navigate('/signUp');
   }
 
- 
+
+
+
     return (
 
         <>
@@ -50,14 +52,11 @@ const NavBar = () => {
                     </NavDropdown>
 
                 { 
-                 
                     auth ? 
-
                     <Nav.Link as={NavLink} to='/cart' className="menu">
                         Cart
                         <i className="bi bi-cart-plus-fill"></i>
                         <div className="card-badge badge bg-success">{point.length}</div>
-
                     </Nav.Link>:""
                 }
 
@@ -70,6 +69,7 @@ const NavBar = () => {
                             placeholder="Search by category,title,brand,color,size..."
                             className="rounded-0 shadow-none"
                             aria-label="Search" 
+                            value={searchParams.keyword}
                             onChange={(e)=>setSearch(e.target.value)}
                             style={{fontSize:"15px",padding:"2px 15px 2px 15px"}} 
                         />

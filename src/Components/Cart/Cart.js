@@ -108,7 +108,7 @@ const Cart = () => {
                             handleCartClose={handleCartClose}
                             handleQuantity={handleQuantity} />
 
-                        <div className='col-4 price-details p-3'>
+                        <div className='col-4 price-details p-3 h-25'>
 
                             <h4 className='text-secondary'>Price Details</h4>
 

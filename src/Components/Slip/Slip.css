@@ -67,3 +67,55 @@
     line-height: 20px;
   }
 }
+
+@media (max-width: 450px) {
+  .modal_header {
+    width: 110%;
+    height: 20%;
+  }
+
+  .modal_body {
+    width: 110%;
+    height: 650px;
+  }
+
+  .slip_container {
+    position: relative;
+    left: 6%;
+    font-size: 14px;
+    width: 110%;
+    line-height: 20px;
+    height: 580px;
+  }
+
+  .slip-cancel {
+    position: relative;
+    left: -256%;
+  }
+}
+
+@media (max-width: 380px) {
+  .modal_header {
+    width: 120%;
+    height: 20%;
+  }
+
+  .modal_body {
+    width: 120%;
+    height: 650px;
+  }
+
+  .slip_container {
+    position: relative;
+    left: 6%;
+    font-size: 14px;
+    width: 120%;
+    line-height: 20px;
+    height: 580px;
+  }
+
+  .slip-cancel {
+    position: relative;
+    left: -346%;
+  }
+}
